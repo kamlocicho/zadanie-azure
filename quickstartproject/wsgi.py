@@ -11,6 +11,7 @@ import os
 
 from django.core.wsgi import get_wsgi_application
 
+os.environ.setdefault('WEBSITE_HOSTNAME', "localhost")
 settings_module = 'quickstartproject.production' if 'WEBSITE_HOSTNAME' in os.environ else 'quickstartproject.settings'
 os.environ.setdefault('DJANGO_SETTINGS_MODULE', settings_module)
 
