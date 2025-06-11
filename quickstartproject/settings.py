@@ -82,10 +82,18 @@ WSGI_APPLICATION = 'quickstartproject.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'mssql',
+        'NAME': "projekt-db",
+        'HOST': "projekt-db-server-jk-ko.database.windows.net",
+        'PORT': "1433",
+        'USER': "admin123",
+        'PASSWORD': "Password!",
+        'OPTIONS': {
+            'driver': 'ODBC Driver 17 for SQL Server',
+        }
     }
 }
+
 
 
 # Password validation
