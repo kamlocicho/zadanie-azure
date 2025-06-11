@@ -53,11 +53,3 @@ DATABASES = {
         }
     }
 }
-
-
-INSTALLED_APPS += ['storages']
-DEFAULT_FILE_STORAGE = 'storages.backends.azure_storage.AzureStorage'
-AZURE_ACCOUNT_NAME="projektjkko"
-AZURE_ACCOUNT_KEY="r+3X6Opymv4qSQRXlvaoyUNWAtzbROarjOfT6yNPdSsHG/arjUmpyLOcp02YE+Si7Hx2W8hiq0oU+AStoW6vsw=="
-AZURE_CONTAINER="files"
-AZURE_CUSTOM_DOMAIN = f'{AZURE_ACCOUNT_NAME}.blob.core.windows.net'
