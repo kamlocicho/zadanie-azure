@@ -1,4 +1,5 @@
-from ninja import Router
+from ninja import Router, File, Form
+from ninja.files import UploadedFile
 from .models import BlogPost, BlogPostSchema, CreateBlogPostSchema
 from typing import List
 from authentication_system.security import TokenAuth
@@ -12,8 +13,11 @@ def get_posts(request):
 
 
 @router.post("/posts", response=BlogPostSchema, auth=TokenAuth())
-def create_post(request, data: CreateBlogPostSchema):
-    post = BlogPost.objects.create(title=data.title, content=data.content)
+def create_post(request, 
+    title: str = Form(...),
+    content: str = Form(...),
+    file: File[UploadedFile] = File(None)):
+    post = BlogPost.objects.create(title=title, content=content, file=file if file else None)
     return post.toSchema()
 
 @router.delete("/posts/{id}", auth=TokenAuth())
