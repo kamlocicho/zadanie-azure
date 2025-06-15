@@ -8,7 +8,9 @@ SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY', 'unsafe-default-key')
 
 ALLOWED_HOSTS = [os.environ.get("WEBSITE_HOSTNAME")]
 CSRF_TRUSTED_ORIGINS = [f"https://{os.environ.get('WEBSITE_HOSTNAME')}"]
-DEBUG = False
+CSRF_COOKIE_SECURE = True
+SESSION_COOKIE_SECURE = True
+DEBUG = True
 
 INSTALLED_APPS += ['storages']
 DEFAULT_FILE_STORAGE = 'storages.backends.azure_storage.AzureStorage'
