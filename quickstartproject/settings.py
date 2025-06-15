@@ -45,7 +45,6 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
-    # Add whitenoise middleware after the security middleware
     'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -78,14 +77,14 @@ WSGI_APPLICATION = 'quickstartproject.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.0/ref/settings/#databases
 
+# bad idea but we ran prod DB for development over here, to make sure DB schemas are valid in mssql
 DATABASES = {
     'default': {
         'ENGINE': 'mssql',
-        'NAME': "projekt-db",
-        'HOST': "projekt-db-server-jk-ko.database.windows.net",
-        'PORT': "1433",
-        'USER': "admin123",
-        'PASSWORD': "Password!",
+        'NAME': os.environ['AZURE_MSSQL_NAME'],
+        'HOST': os.environ['AZURE_MSSQL_HOST'],
+        'USER': os.environ['AZURE_MSSQL_USER'],
+        'PASSWORD': os.environ['AZURE_MSSQL_PASSWORD'],
         'OPTIONS': {
             'driver': 'ODBC Driver 17 for SQL Server',
         }
@@ -138,10 +137,3 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
-
-INSTALLED_APPS += ['storages']
-DEFAULT_FILE_STORAGE = 'storages.backends.azure_storage.AzureStorage'
-AZURE_ACCOUNT_NAME="projektjkko"
-AZURE_ACCOUNT_KEY="r+3X6Opymv4qSQRXlvaoyUNWAtzbROarjOfT6yNPdSsHG/arjUmpyLOcp02YE+Si7Hx2W8hiq0oU+AStoW6vsw=="
-AZURE_CONTAINER="files"
-AZURE_CUSTOM_DOMAIN = f'{AZURE_ACCOUNT_NAME}.blob.core.windows.net'
