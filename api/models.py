@@ -16,7 +16,7 @@ class BlogPost(models.Model):
     id = models.AutoField(primary_key=True, help_text="Unique identifier for the image")
     title = models.CharField(max_length=100, help_text="Title of the blog post")
     content = models.CharField(max_length=255, help_text="Contents of the blog post")
-    file = models.FileField(upload_to='uploads/', default='', blank=True)
+    file = models.FileField(upload_to='uploads/', default='', blank=True, null=True)
 
 
     def toSchema(self):

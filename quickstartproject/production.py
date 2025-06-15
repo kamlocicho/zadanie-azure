@@ -7,7 +7,7 @@ from .settings import *
 SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY', 'unsafe-default-key')
 
 ALLOWED_HOSTS = [os.environ.get("WEBSITE_HOSTNAME")]
-CSRF_TRUSTED_ORIGINS = [os.environ.get("WEBSITE_HOSTNAME")]
+CSRF_TRUSTED_ORIGINS = [f"https://{os.environ.get('WEBSITE_HOSTNAME')}"]
 DEBUG = False
 
 INSTALLED_APPS += ['storages']
