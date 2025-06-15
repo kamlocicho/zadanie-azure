@@ -6,8 +6,8 @@ from .settings import *
 # Ideally the databse connection code should be here too
 SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY', 'unsafe-default-key')
 
-ALLOWED_HOSTS = [os.environ.get("WEBSITE_HOSTNAME")]
-CSRF_TRUSTED_ORIGINS = [f"https://{os.environ.get('WEBSITE_HOSTNAME')}"]
+ALLOWED_HOSTS = [os.environ.get("WEBSITE_HOSTNAME"), "169.254.129.17"]
+CSRF_TRUSTED_ORIGINS = [f"https://{os.environ.get('WEBSITE_HOSTNAME')}", "169.254.129.17"]
 CSRF_COOKIE_SECURE = True
 SESSION_COOKIE_SECURE = True
 DEBUG = True
